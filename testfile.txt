@@ -1,0 +1,24 @@
+Array
+(
+    [0] => Array
+        (
+            [CategoryID] => 1
+            [CategoryName] => refrigerators
+            [CategoryImage] => appliance-1767311_1920.jpg
+        )
+
+    [1] => Array
+        (
+            [CategoryID] => 2
+            [CategoryName] => microwaves
+            [CategoryImage] => OGG3701.jpg
+        )
+
+    [2] => Array
+        (
+            [CategoryID] => 3
+            [CategoryName] => tv
+            [CategoryImage] => tv-1625220_1920.jpg
+        )
+
+)
