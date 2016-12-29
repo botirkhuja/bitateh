@@ -2,23 +2,31 @@
 	header("Access-Control-Allow-Origin: *");
 	header("Content-Type: application/json; charset=UTF-8");
 
+	//connecting to database link
+	include "api/functions.php";
+
   	$selectedCategory = $_REQUEST;
 
-  	$servername = "localhost";
-  	$username = "root";
-  	$password = "admin";
-  	$dbname = "bitateh";
+  	// $servername = "localhost";
+  	// $username = "root";
+  	// $password = "admin";
+  	// $dbname = "bitateh";
+
+  	global $host;
+  	global $username;
+  	global $password;
+  	global $database;
 
   	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
+	$conn = new mysqli($host, $username, $password, $database);
 	// Check connection
 	if ($conn->connect_errno) {
     	die("Connection failed: " .$conn->connect_error);
         exit();
 	}
-	define('CategoryID', 'CategoryID');
+
 	// Setting query to get items
-	$sql = "SELECT ItemID, CategoryID, Title, Price, ImgSrc FROM items WHERE CategoryID = " .$selectedCategory[CategoryID];
+	$sql = "SELECT ItemID, CategoryID, Title, Price, Img FROM items WHERE CategoryID = " .$selectedCategory["CategoryID"];
 	$result = $GLOBALS['conn']->query($sql);
 
 	$jsonResult = array();

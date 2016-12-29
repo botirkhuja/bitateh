@@ -142,16 +142,18 @@ app.controller('categoriesCtrl', function($scope, $http)
     $scope.submit = function () {
     	var orderInfo = {
     		"payer":$scope.payer,
-    		"receiver":$scope.receiver,
-    		"deliveryDate":$scope.deliveryDate,
+    		// "receiver":$scope.receiver,
+    		// "deliveryDate":$scope.deliveryDate,
     		"itemsOrdered":$scope.cart
     		};
 
     	$.ajax({
     		url: "checkOut.php",
     		data: orderInfo,
-    		success: function (argument) {
-    			// body...
+    		success: function (success) {
+          $scope.$apply(function () {
+            // $scope.itemNames = result;
+          })
     		}
     	})
     }

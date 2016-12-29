@@ -52,7 +52,7 @@ function admin_login($admin){
              }
 
             $_SESSION['admin_email'] = $email;
-            $_SESSION['admin_name'] = $id;
+            $_SESSION['admin_name'] = $name;
             $_SESSION['admin_id'] = $id;
 
 

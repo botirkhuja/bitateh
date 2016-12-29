@@ -45,10 +45,11 @@
 		}
 	}
 
-	$outp = print_r($rows, true);
-                    	$myfile = fopen("testfile.txt", "w");
-                        	fwrite($myfile, $outp);
-                        	fclose($myfile);
+	// checking results by outputting to text file
+	// $outp = print_r($rows, true);
+	// $myfile = fopen("testfile.txt", "w");
+	// fwrite($myfile, $outp);
+	// fclose($myfile);
 
 	// Close result sets
 	$results2->close();

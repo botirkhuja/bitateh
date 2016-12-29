@@ -1,9 +1,10 @@
 <?php
 
-	include "../functions/functions.php";
+	//include "../functions/functions.php";
+    include "../../api/functions.php";
 // Array with names
-    global $localhost, $username, $password, $database;
-    $con = new mysqli($localhost, $username, $password, $database);
+    global $host, $username, $password, $database;
+    $con = new mysqli($host, $username, $password, $database);
 
     /* check connection */
     if ($con->connect_errno) {
@@ -11,12 +12,14 @@
         exit();
     }
 
-    $query = "select cat_id, cat_title from categories";
+
+
+    $query = "SELECT CategoryID, CategoryName from categories";
     $result = $con->query($query);
 
-    while ($row = mysqli_fetch_array($result)) {
-        $cat_id = $row['cat_id'];
-        $cat_title = $row['cat_title'];
+    while ($row = $result->fetch_assoc()) {
+        $cat_id = $row['CategoryID'];
+        $cat_title = $row['CategoryName'];
 
         $a[] = $cat_title;
     }
