@@ -21,6 +21,91 @@ app.controller('categoriesCtrl', function($scope, $http)
 		{month : "December", number : 12}
 	];
 
+  var chosenCategoryName = '';
+  var selectedLanguage = 0;
+  var langua = [
+    {
+      header1: 'Texniko.uz',
+      header2: 'Toshkent orqali har qanday texnikalarni bizda zakaz qiling!',
+      header3: 'Barcha turdagi texnikalar to\'plami',
+      header4: 'Toshkentdagi eng sara kompaniyalardan hammasi shu yerda',
+      header5: 'Ko\'proq malumot',
+      modal1: 'Tavsif',
+      modal2: 'Sotuvchi',
+      modal3: 'Brendi',
+      modal4: 'Xususiyatlari',
+      navi1: 'Bosh',
+      navi2: 'Kategoriyalar',
+      navi3: 'Til',
+      explain1: 'Bu web saxifa quyidagicha ishlaydi',
+      explain2: 'Birini tanlang',
+      explain3: 'Turli xil Kategoriyalardan',
+      explain4: 'Tovarni ko\'ring',
+      explain5: 'Yoqqanini belgilang',
+      explain6: 'Qo\'ng\'iroq qil',
+      explain7: 'Berilgan telefon raqamga',
+      explain8: 'Manzilni ol',
+      explain9: 'va borib harid qil',
+      category1: 'Tanlash Uchun Kategoriyalar',
+      refrigerators: 'muzlatgichlar',
+      microwaves: 'Mikroto\'lqinli pechlar',
+      tv: 'televizorlar',
+      items1: 'Kategoriya Tanlang',
+      items2: 'Batafsil Malumot',
+    },
+
+    {
+
+    },
+
+    {
+      header1: 'Welcome to Texniko.uz',
+      header2: 'The place where you can order any techs in Tashkent, Uzbekistan',
+      header3: 'Order them from us in low prices',
+      header4: 'and get them delivered to any place in Tashkent.',
+      header5: 'Learn how it works',
+      modal1: 'Description',
+      modal2: 'Seller Info',
+      modal3: 'Brand',
+      modal4: 'Features',
+      navi1: 'Home',
+      navi2: 'Categories',
+      navi3: 'Lang',
+      explain1: 'This is how it works',
+      explain2: 'Select a category',
+      explain3: 'From many categories we have',
+      explain4: 'Check an item',
+      explain5: 'You have variety options',
+      explain6: 'Contact to seller',
+      explain7: 'Seller informations is avaliable',
+      explain8: 'Check address',
+      explain9: 'and buy it from seller',
+      category1: 'Categories to Choose',
+      refrigerators: 'refrigerators',
+      microwaves: 'microwaves',
+      tv: 'tv',
+      items1: 'Select a Category first',
+      items2: 'View Details',
+    }
+  ];
+
+  $scope.languages = langua[selectedLanguage];
+
+  $scope.changeLang = function (lang) {
+    $scope.languages = langua[lang];
+    selectedLanguage = lang;
+    $scope.chosenCategory = $scope.languagesCategoryOrItemName(chosenCategoryName);
+  }
+
+  $scope.languagesCategoryOrItemName = function (target) {
+    if (langua[selectedLanguage][target] == '' || langua[selectedLanguage][target] == null) {
+      return target;
+    } else {
+      return langua[selectedLanguage][target];
+    };
+
+  }
+
 	$scope.categoryNames = [];
     $http.get("categoryNames.php").then(function (response) {
     	$scope.categoryNames = response.data;
@@ -78,7 +163,8 @@ app.controller('categoriesCtrl', function($scope, $http)
 			}
 		});
 
-		$scope.chosenCategory = chosenCategory.CategoryName;
+    chosenCategoryName = chosenCategory.CategoryName;
+		$scope.chosenCategory = $scope.languagesCategoryOrItemName(chosenCategoryName);
 
 		//This is old request used with ajax
 		/*var xhttp;
@@ -92,7 +178,7 @@ app.controller('categoriesCtrl', function($scope, $http)
       	xhttp.open("GET", url, true);
       	xhttp.send();*/
     
-    };
+  };
 
     $scope.addToCart = function (item) {
   		$scope.showCheckOut=true;
@@ -130,6 +216,44 @@ app.controller('categoriesCtrl', function($scope, $http)
     	});
     	return total;
     };
+
+    $scope.viewDetails = function (item) {
+      $scope.item = item;
+      $.ajax({
+        url: 'itemImages.php',
+        data: item,
+        success: function (result) {
+          $scope.$apply(function () {
+            $scope.imageNames = result;
+          })
+        }
+      });
+
+      $.ajax({
+        url: 'getSellerInfo.php',
+        data: item,
+        success: function (result) {
+          $scope.$apply(function () {
+            $scope.seller = result[0];
+          })
+        }
+      });
+
+      $('#galary-carousel').carousel('pause');
+      $('#itemInfoModal').modal('toggle');
+      $('#myModal').on('hidden.bs.modal', function (e) {
+        // $scope.imageNames
+      })
+    }
+
+    $('#sellerTab').click(function (argument) {
+      // argument.preventDefault();
+      $(this).tab('show');
+    });
+    $('#descTab').click(function (argument) {
+      // argument.preventDefault();
+      $(this).tab('show');
+    });
     
     // $scope.cancel = function (placeOrderForm) {
     // 	$scope.payer = angular.copy(emptyObject);

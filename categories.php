@@ -3,44 +3,18 @@
 	header("Content-Type: application/json; charset=UTF-8");
 
 	//connecting to database link
-	include "api/functions.php";
+	require "api/functions.php";
 
+	// Requesting a selected category id
   	$selectedCategory = $_REQUEST;
 
-  	// $servername = "localhost";
-  	// $username = "root";
-  	// $password = "admin";
-  	// $dbname = "bitateh";
+  	// getting connection
+  	global $con;
 
-  	global $host;
-  	global $username;
-  	global $password;
-  	global $database;
+	// Setting query to get items using PHP PDO
+	$stmt = $con->prepare('SELECT ItemID, CategoryID, Title, Model, Brand, Price, Description, Img, SellerID FROM items WHERE CategoryID = :CategoryID');
+	$stmt->execute(['CategoryID' => $selectedCategory['CategoryID']]);
+	$result=$stmt->fetchAll(PDO::FETCH_ASSOC);
 
-  	// Create connection
-	$conn = new mysqli($host, $username, $password, $database);
-	// Check connection
-	if ($conn->connect_errno) {
-    	die("Connection failed: " .$conn->connect_error);
-        exit();
-	}
-
-	// Setting query to get items
-	$sql = "SELECT ItemID, CategoryID, Title, Price, Img FROM items WHERE CategoryID = " .$selectedCategory["CategoryID"];
-	$result = $GLOBALS['conn']->query($sql);
-
-	$jsonResult = array();
-	while ($rs = $result->fetch_array(MYSQLI_ASSOC)) {
-	  	// if ($jsonResult != "") {$jsonResult .= ",";}
-	  	// $jsonResult .= '{"ItemID":"' 	.$rs[ItemID]	.'",';
-	  	// $jsonResult .= '"CategoryID":"'	.$rs[CategoryID]	.'",';
-	  	// $jsonResult .= '"Title":"' 		.$rs[Title]	.'",';
-	  	// $jsonResult .= '"Price":"'		.$rs[Price]	.'"}';
-	  	$jsonResult[] = $rs;
-	}
-	// $jsonResult = '{"records":['.$jsonResult.']}';
-	$result->close();
-	$conn->close();
-	echo json_encode($jsonResult);
-	// echo ($jsonResult);
+	echo json_encode($result);
 ?>
