@@ -22,9 +22,10 @@ app.controller('categoriesCtrl', function($scope, $http)
 	];
 
   var chosenCategoryName = '';
-  var selectedLanguage = 0;
+  var selectedLanguage = 1;
   var langua = [
     {
+      title: 'Texniko.uz Texnikalar Web Sayti',
       header1: 'Texniko.uz',
       header2: 'Toshkent orqali har qanday texnikalarni bizda zakaz qiling!',
       header3: 'Barcha turdagi texnikalar to\'plami',
@@ -51,41 +52,73 @@ app.controller('categoriesCtrl', function($scope, $http)
       microwaves: 'Mikroto\'lqinli pechlar',
       tv: 'televizorlar',
       items1: 'Kategoriya Tanlang',
-      items2: 'Batafsil Malumot',
+      items2: 'Batafsil Malumot'
     },
 
     {
-
+      title: 'Texniko.uz Мир технологий в Ташкенте',
+      header1: 'Добро пожаловать на Texniko.uz',
+      header2: 'Место, где вы можете заказать любые технологии в Ташкенте, Узбекистан',
+      header3: 'Закажите у нас по низким ценам',
+      header4: 'и ваш заказ доставляется в любое место в Ташкенте.',
+      header5: 'Узнайте, как это работает.',
+      modal1: 'Подробно',
+      modal2: 'Продавец',
+      modal3: 'Бренд',
+      modal4: 'Характеристика',
+      modal5: 'Закрыть',
+      navi1: 'Главная',
+      navi2: 'Категория',
+      navi3: 'Язык',
+      explain1: 'Вот как это работает',
+      explain2: 'Выберите категорию',
+      explain3: 'Из многих категорий мы имеем',
+      explain4: 'Выберите товар',
+      explain5: 'У нас есть разнообразные варианты',
+      explain6: 'Связаться с продавцом',
+      explain7: 'Информация о продавце доступна',
+      explain8: 'Получить адрес',
+      explain9: 'И купите свой выбор у продавца',
+      category1: 'Категории для выбора',
+      refrigerators: 'Холодильники',
+      microwaves: 'микроволновые печи',
+      tv: 'телевизоры',
+      cellphone: 'сотовые телефоны',
+      items1: 'Выберите категорию',
+      items2: 'Посмотреть детали'
     },
 
     {
+      title: 'Texniko.uz The Techs World in Tashkent',
       header1: 'Welcome to Texniko.uz',
       header2: 'The place where you can order any techs in Tashkent, Uzbekistan',
-      header3: 'Order them from us in low prices',
-      header4: 'and get them delivered to any place in Tashkent.',
+      header3: 'Order from us in low prices',
+      header4: 'and orders are delivered to any place in Tashkent.',
       header5: 'Learn how it works',
       modal1: 'Description',
       modal2: 'Seller Info',
       modal3: 'Brand',
       modal4: 'Features',
+      modal5: 'Close',
       navi1: 'Home',
       navi2: 'Categories',
-      navi3: 'Lang',
+      navi3: 'Language',
       explain1: 'This is how it works',
       explain2: 'Select a category',
       explain3: 'From many categories we have',
-      explain4: 'Check an item',
-      explain5: 'You have variety options',
+      explain4: 'Choose an item',
+      explain5: 'We have variety options',
       explain6: 'Contact to seller',
-      explain7: 'Seller informations is avaliable',
+      explain7: 'Seller information is available',
       explain8: 'Check address',
-      explain9: 'and buy it from seller',
+      explain9: 'and buy your selection from seller',
       category1: 'Categories to Choose',
       refrigerators: 'refrigerators',
       microwaves: 'microwaves',
       tv: 'tv',
-      items1: 'Select a Category first',
-      items2: 'View Details',
+      cellphone: 'cell phone',
+      items1: 'Select a category',
+      items2: 'View details'
     }
   ];
 
