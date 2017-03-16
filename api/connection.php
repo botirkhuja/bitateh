@@ -5,7 +5,7 @@
 	$password = 'admin';
 	$database =  "bitateh"; 
 */
-	$host = '83.69.139.168';
+	$host = 'localhost';
 	$username = 'texnikou';
 	$password = '73e1Zu3aqS';
 	$database = 'texnikou_techs';

@@ -4,11 +4,14 @@
     require 'functions/functions.php';
     
     if( !isset($_SESSION['admin_email']) ){
-        echo "<script> window.location ='./login.php';</script>";
+        echo "<script>
+            if (window.location.protocol !== 'https:'){window.location = 'https://'+window.location.hostname+window.location.pathname;}
+            window.location ='./login.php';
+        </script>";
     }
 
 ?>
-
+<script>if (window.location.protocol !== 'https:'){window.location = 'https://'+window.location.hostname+window.location.pathname;}</script>
 <!DOCTYPE html>
 <html lang="">
 <head>

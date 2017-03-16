@@ -11,7 +11,7 @@ require 'functions/functions.php';
         $new_brand = $_POST['brand'];
         $result = insert_new_brand($new_brand);
         if($result)
-            echo "<script>window.location='./index.php?brand_inserted';</script>";
+            echo "<script>window.location='./indexOld.php?brand_inserted';</script>";
         else
             echo "<script> alert('The Brand already exit in the database.'); </script>";
     } 

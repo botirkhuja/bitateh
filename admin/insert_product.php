@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
     $result = insert_new_product($product);
 
     if ($result)
-        echo "<script>window.location='./index.php?product_inserted';</script>";
+        echo "<script>window.location='./indexOld.php?product_inserted';</script>";
     else
         echo "<script> alert('Oops something went wrong.'); </script>";
     }

@@ -12,7 +12,7 @@ require 'functions/functions.php';
         $result = insert_new_categories($new_category);
 
         if($result)
-            echo "<script>window.location='./index.php?category_inserted';</script>";
+            echo "<script>window.location='./indexOld.php?category_inserted';</script>";
         else
             echo "<script> alert('Oops something went wrong.'); </script>";
     } 

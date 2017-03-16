@@ -1,4 +1,4 @@
-app.controller('categoriesCtrl', function($scope, $http)
+app.controller('myCtrl', function($scope, $http)
 {
 	$scope.required = true;
 	var todayDate = new Date();
@@ -21,7 +21,6 @@ app.controller('categoriesCtrl', function($scope, $http)
 		{month : "December", number : 12}
 	];
 
-  $scope.testers = [{hello: 'ывфвыфаыфв'}];
   var chosenCategoryName = '';
   var selectedLanguage = 1;
   var langua = [
@@ -52,41 +51,42 @@ app.controller('categoriesCtrl', function($scope, $http)
       refrigerators: 'muzlatgichlar',
       microwaves: 'Mikroto\'lqinli pechlar',
       tv: 'televizorlar',
+      cellphone: 'Uyali telefonlar',
       items1: 'Kategoriya Tanlang',
       items2: 'Batafsil Malumot'
     },
 
     {
-      title: 'Texniko.uz Мир технологий в Ташкенте',
-      header1: 'Добро пожаловать на Texniko.uz',
-      header2: 'Место, где вы можете заказать любые технологии в Ташкенте, Узбекистан',
-      header3: 'Закажите у нас по низким ценам',
-      header4: 'и ваш заказ доставляется в любое место в Ташкенте.',
-      header5: 'Узнайте, как это работает.',
-      modal1: 'Подробно',
-      modal2: 'Продавец',
-      modal3: 'Бренд',
-      modal4: 'Характеристика',
-      modal5: 'Закрыть',
-      navi1: 'Главная',
-      navi2: 'Категория',
-      navi3: 'Язык',
-      explain1: 'Вот как это работает',
-      explain2: 'Выберите категорию',
-      explain3: 'Из многих категорий мы имеем',
-      explain4: 'Выберите товар',
-      explain5: 'У нас есть разнообразные варианты',
-      explain6: 'Связаться с продавцом',
-      explain7: 'Информация о продавце доступна',
-      explain8: 'Получить адрес',
-      explain9: 'И купите свой выбор у продавца',
-      category1: 'Категории для выбора',
-      refrigerators: 'Холодильники',
-      microwaves: 'микроволновые печи',
-      tv: 'телевизоры',
-      cellphone: 'сотовые телефоны',
-      items1: 'Выберите категорию',
-      items2: 'Посмотреть детали'
+      title: 'Texniko.uz РњРёСЂ С‚РµС…РЅРѕР»РѕРіРёР№ РІ РўР°С€РєРµРЅС‚Рµ',
+      header1: 'Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РЅР° Texniko.uz',
+      header2: 'РњРµСЃС‚Рѕ, РіРґРµ РІС‹ РјРѕР¶РµС‚Рµ Р·Р°РєР°Р·Р°С‚СЊ Р»СЋР±С‹Рµ С‚РµС…РЅРѕР»РѕРіРёРё РІ РўР°С€РєРµРЅС‚Рµ, РЈР·Р±РµРєРёСЃС‚Р°РЅ',
+      header3: 'Р—Р°РєР°Р¶РёС‚Рµ Сѓ РЅР°СЃ РїРѕ РЅРёР·РєРёРј С†РµРЅР°Рј',
+      header4: 'Рё РІР°С€ Р·Р°РєР°Р· РґРѕСЃС‚Р°РІР»СЏРµС‚СЃСЏ РІ Р»СЋР±РѕРµ РјРµСЃС‚Рѕ РІ РўР°С€РєРµРЅС‚Рµ.',
+      header5: 'РЈР·РЅР°Р№С‚Рµ, РєР°Рє СЌС‚Рѕ СЂР°Р±РѕС‚Р°РµС‚.',
+      modal1: 'РџРѕРґСЂРѕР±РЅРѕ',
+      modal2: 'РџСЂРѕРґР°РІРµС†',
+      modal3: 'Р‘СЂРµРЅРґ',
+      modal4: 'РҐР°СЂР°РєС‚РµСЂРёСЃС‚РёРєР°',
+      modal5: 'Р—Р°РєСЂС‹С‚СЊ',
+      navi1: 'Р“Р»Р°РІРЅР°СЏ',
+      navi2: 'РљР°С‚РµРіРѕСЂРёСЏ',
+      navi3: 'РЇР·С‹Рє',
+      explain1: 'Р’РѕС‚ РєР°Рє СЌС‚Рѕ СЂР°Р±РѕС‚Р°РµС‚',
+      explain2: 'Р’С‹Р±РµСЂРёС‚Рµ РєР°С‚РµРіРѕСЂРёСЋ',
+      explain3: 'РР· РјРЅРѕРіРёС… РєР°С‚РµРіРѕСЂРёР№ РјС‹ РёРјРµРµРј',
+      explain4: 'Р’С‹Р±РµСЂРёС‚Рµ С‚РѕРІР°СЂ',
+      explain5: 'РЈ РЅР°СЃ РµСЃС‚СЊ СЂР°Р·РЅРѕРѕР±СЂР°Р·РЅС‹Рµ РІР°СЂРёР°РЅС‚С‹',
+      explain6: 'РЎРІСЏР·Р°С‚СЊСЃСЏ СЃ РїСЂРѕРґР°РІС†РѕРј',
+      explain7: 'РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РїСЂРѕРґР°РІС†Рµ РґРѕСЃС‚СѓРїРЅР°',
+      explain8: 'РџРѕР»СѓС‡РёС‚СЊ Р°РґСЂРµСЃ',
+      explain9: 'Р РєСѓРїРёС‚Рµ СЃРІРѕР№ РІС‹Р±РѕСЂ Сѓ РїСЂРѕРґР°РІС†Р°',
+      category1: 'РљР°С‚РµРіРѕСЂРёРё РґР»СЏ РІС‹Р±РѕСЂР°',
+      refrigerators: 'РҐРѕР»РѕРґРёР»СЊРЅРёРєРё',
+      microwaves: 'РјРёРєСЂРѕРІРѕР»РЅРѕРІС‹Рµ РїРµС‡Рё',
+      tv: 'С‚РµР»РµРІРёР·РѕСЂС‹',
+      cellphone: 'СЃРѕС‚РѕРІС‹Рµ С‚РµР»РµС„РѕРЅС‹',
+      items1: 'Р’С‹Р±РµСЂРёС‚Рµ РєР°С‚РµРіРѕСЂРёСЋ',
+      items2: 'Р”РµС‚Р°Р»Рё'
     },
 
     {
@@ -211,7 +211,7 @@ app.controller('categoriesCtrl', function($scope, $http)
     	var url = "categories.php?selectedCategory=" + argument.toString();
       	xhttp.open("GET", url, true);
       	xhttp.send();*/
-    
+
   };
 
     $scope.addToCart = function (item) {
@@ -252,29 +252,30 @@ app.controller('categoriesCtrl', function($scope, $http)
     };
 
     $scope.viewDetails = function (item) {
-      $scope.item = item;
-      $.ajax({
-        url: 'getItemImages.php',
-        data: item,
-        success: function (result) {
-          $scope.$apply(function () {
-            $scope.imageNames = result;
-          })
-        }
-      });
-
-      $.ajax({
-        url: 'getSellerInfo.php',
-        data: item,
-        success: function (result) {
-          $scope.$apply(function () {
-            $scope.seller = result[0];
-          })
-        }
-      });
-
-      $('#galary-carousel').carousel('pause');
       $('#itemInfoModal').modal('toggle');
+      $(document).ready(function(){
+        $scope.item = item;
+        $.ajax({
+          url: 'getItemImages.php',
+          data: item,
+          success: function (result) {
+            $scope.$apply(function () {
+              $scope.imageNames = result;
+            })
+          }
+        });
+
+        $.ajax({
+          url: 'getSellerInfo.php',
+          data: item,
+          success: function (result) {
+            $scope.$apply(function () {
+              $scope.seller = result[0];
+            })
+          }
+        });
+      });
+
       $('#myModal').on('hidden.bs.modal', function (e) {
         // $scope.imageNames
       })
