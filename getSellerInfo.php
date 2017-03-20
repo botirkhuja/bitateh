@@ -6,13 +6,13 @@
 	require "api/functions.php";
 
 	// Requesting a selected item id
-  	$ID = $_REQUEST;
+  	$ID = $_POST;
 
   	// getting connection
   	global $con;
 
-	// Setting query to get items using PHP PDO
-	$stmt = $con->prepare('SELECT FirstName, BusinessName, AreaCode, PhoneNumber, BusinessAddress FROM seller WHERE SellerID = :ID');
+//	// Setting query to get items using PHP PDO
+	$stmt = $con->prepare('SELECT FirstName, BusinessName, AreaCode, PhoneNumber, BusinessAddress FROM sellers WHERE SellerID = :ID');
 	$stmt->execute(['ID' => $ID['SellerID']]);
 	$result=$stmt->fetchAll(PDO::FETCH_ASSOC);
 

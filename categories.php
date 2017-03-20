@@ -6,7 +6,8 @@
 	require "api/functions.php";
 
 	// Requesting a selected category id
-  	$selectedCategory = $_REQUEST;
+	$selectedCategory = $_POST;
+	//	echo "<script type='text/javascript'>alert('$selectedCategory');</script>";
 
   	// getting connection
   	global $con;

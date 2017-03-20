@@ -6,7 +6,7 @@
 	require "api/functions.php";
 
 	// Requesting a selected item id
-  	$ID = $_REQUEST;
+  	$ID = $_POST;
 
   	// getting connection
   	global $con;

@@ -1,38 +1,43 @@
 <?php
     include "../api/functions.php";
 
-function insert_new_product($product)
-{
-      try{
-           global $con;
-           $result = $con->prepare("insert into products(product_title, product_brand, product_cat, 
-                                    product_price, product_image, product_keywords, product_desc)
-                                    values(:title,:brand,:category,:price,:image,:keyword,:description);");
+    function insert_new_product($product)
+    {
+      try
+      {
+          global $con;
+          $result = $con->prepare("insert into items(SellerID, CategoryID, Title, Brand,
+                                    Price, Img, Keywords, Description, Model)
+                                    values(:sellerID,:category,:title,:brand,:price,:image,:keyword,:description,:model);");
 
-           $result->bindParam(':title', $product['title']);
-           $result->bindParam(':brand', $product['brand']);
-           $result->bindParam(':category', $product['category']);
-           $result->bindParam(':price', $product['price']);
-           $result->bindParam(':image', $product['image']);
-           $result->bindParam(':keyword', $product['keyword']);
-           $result->bindParam(':description', $product['description']);
+          $result->bindParam(':title', $product['title']);
+          $result->bindParam(':brand', $product['brand']);
+          $result->bindParam(':category', $product['category']);
+          $result->bindParam(':price', $product['price']);
+          $result->bindParam(':image', $product['image']);
+          $result->bindParam(':keyword', $product['keyword']);
+          $result->bindParam(':description', $product['description']);
+          $result->bindParam(':sellerID', $product['sellerID']);
+          $result->bindParam(':model', $product['model']);
 
-           return $result->execute();
+
+
+          return $result->execute();
       
-       }
+      }
   
       catch(PDOException $error){
           echo 'Connection failed: '.$error->getMessage().'.';
           return false;
       }
 
-}  // END OF FUNCTION
+    }  // END OF FUNCTION
 
-function admin_login($admin){ 
+    function admin_login($admin)
+    {
+        global $con;
 
-     global $con;
-    
-     try{
+        try{
             
             $result = $con->prepare("select admin_id, admin_email, admin_name from admin where admin_password=:password and admin_email=:email");
             
@@ -63,7 +68,27 @@ function admin_login($admin){
             return false;
         }
 
-}//END OF FUNCTION
+    }//END OF FUNCTION
 
+    function insert_new_category($c_name, $p_image)
+    {
 
+        try
+        {
+        global $con;
+        $result = $con->prepare("insert into categories(CategoryName, CategoryImage)
+                                      values(:c_name,:image);");
+
+        $result->bindParam(':c_name', $c_name);
+        $result->bindParam(':image', $p_image);
+
+        return $result->execute();
+
+        }
+
+        catch(PDOException $error){
+        echo 'Connection failed: '.$error->getMessage().'.';
+        return false;
+        }
+    }//END OF FUNCTION
 ?>

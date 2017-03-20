@@ -1,31 +1,32 @@
-<?php
-if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-ini_set('display_errors', 'On');
+<!DOCTYPE html>
+<html>
+<head>
+    <script>if (window.location.protocol !== 'https:'){window.location = 'https://'+window.location.hostname+window.location.pathname;}</script>
 
-require './functions/functions.php';
-    
-        if(isset($_POST['admin_email']) && isset($_POST['admin_password'])){
-             if(filter_input(INPUT_POST, 'admin_email', FILTER_VALIDATE_EMAIL) &&  
-                            filter_input(INPUT_POST,'admin_password')){
+    <?php
+    if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+    ini_set('display_errors', 'On');
+
+    require './functions/functions.php';
+
+    if(isset($_POST['admin_email']) && isset($_POST['admin_password'])){
+        if(filter_input(INPUT_POST, 'admin_email', FILTER_VALIDATE_EMAIL) &&
+            filter_input(INPUT_POST,'admin_password')){
 
             $email = strip_tags( trim( $_POST[ 'admin_email' ] ) );
             $password = strip_tags( trim( $_POST[ 'admin_password' ] ) );
 
             $admin = array("email"=>$email, "password"=> $password);
-             
-             $result = admin_login($admin);
 
-             if ($result)
+            $result = admin_login($admin);
+
+            if ($result)
                 echo "<script> window.location ='./index.php';</script>";
-             else 
+            else
                 $error = "error";
-            }
         }
-?>
-
-<!DOCTYPE html>
-<html lang="">
-<head>
+    }
+    ?>
 
     <?php include "header.php"; ?>
     <title> Login </title>
@@ -37,7 +38,7 @@ require './functions/functions.php';
 
 <div class="container wrapper">
 
-    <img src="images/banner.png" class="img-responsive" width="100%" height="250">
+    <img src="images/banner.png" class="img-responsive" height="250" alt="banner">
 
     <div class="jumbotron main">
         <div class="row">
@@ -60,13 +61,12 @@ require './functions/functions.php';
                                 <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                                     alt="">
                        
-                                <form id="login_form" class="form-signin" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"  method="post" id="form">
+                                <form id="login_form" class="form-signin" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"  method="post">
                                    
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="admin_email" id="admin_email" placeholder="Email"
-                                          type="text" data-validation="email">
+                                        <input type="text" class="form-control" name="admin_email" id="admin_email" placeholder="Email" data-validation="email">
                                         <input type="password" class="form-control" name="admin_password" id="admin_password" placeholder="Password" 
-                                                data-validation="length" data-validation-length="min5" data-validation="confirmation">
+                                                data-validation="length confirmation" data-validation-length="min5">
                                     </div>
                                        
                                     <button class="btn btn-lg btn-primary btn-block" type="submit"> Sign in </button>
@@ -97,7 +97,6 @@ require './functions/functions.php';
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
 <script> 
     $.validate(); 
-
 
 </script>
 

@@ -1,42 +1,43 @@
-<?php
-if (session_status() !== PHP_SESSION_ACTIVE) {
-    session_start();
-}
-ini_set('display_errors', 'On');
-require 'functions/functions.php';
-
-if (empty($_SESSION['admin_email']))
-    echo "<script> window.location ='./login.php';</script>";
-
-if (isset($_POST['submit'])) {
-
-    $p_title = $_POST['p_title'];
-    $p_category = $_POST['p_category'];
-    $p_brand = $_POST['p_brand'];
-    
-    $p_price = $_POST['p_price'];
-    $p_description = $_POST['p_description'];
-    $p_keyword = $_POST['p_keyword'];
-
-    $p_image = $_FILES["p_image"];
-    move_uploaded_file($_FILES["p_image"]['tmp_name'],"api/product_image/".$_FILES["p_image"]['name']);
-    $p_image = $_FILES["p_image"]['name'];
-
-    $product = array("title"=>$p_title,"category"=>$p_category,"brand"=>$p_brand,
-                     "image"=>$p_image,"price"=>$p_price,"description"=>$p_description,"keyword"=>$p_keyword);
-
-    $result = insert_new_product($product);
-
-    if ($result)
-        echo "<script>window.location='./indexOld.php?product_inserted';</script>";
-    else
-        echo "<script> alert('Oops something went wrong.'); </script>";
-    }
-?>
-
 <!DOCTYPE html>
-<html lang="">
+<html>
 <head>
+    <script>if (window.location.protocol !== 'https:'){window.location = 'https://'+window.location.hostname+window.location.pathname;}</script>
+
+    <?php
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_start();
+    }
+    ini_set('display_errors', 'On');
+    require 'functions/functions.php';
+
+    if (empty($_SESSION['admin_email']))
+        echo "<script> window.location ='./login.php';</script>";
+
+    if (isset($_POST['submit'])) {
+
+        $p_title = $_POST['p_title'];
+        $p_category = $_POST['p_category'];
+        $p_brand = $_POST['p_brand'];
+
+        $p_price = $_POST['p_price'];
+        $p_description = $_POST['p_description'];
+        $p_keyword = $_POST['p_keyword'];
+
+        $p_image = $_FILES["p_image"];
+        move_uploaded_file($_FILES["p_image"]['tmp_name'],"../img/items/".$_FILES["p_image"]['name']);
+        $p_image = $_FILES["p_image"]['name'];
+
+        $product = array("title"=>$p_title,"category"=>$p_category,"brand"=>$p_brand,
+            "image"=>$p_image,"price"=>$p_price,"description"=>$p_description,"keyword"=>$p_keyword);
+
+        $result = insert_new_product($product);
+
+        if ($result)
+            echo "<script>window.location='./index.php?product_inserted';</script>";
+        else
+            echo "<script> alert('Oops something went wrong.'); </script>";
+    }
+    ?>
 
     <?php include "header.php"; ?>
     <title> Add new Product </title>
@@ -48,7 +49,7 @@ if (isset($_POST['submit'])) {
 
 <div class="container wrapper">
 
-    <img src="images/banner.png" class="img-responsive" width="100%" height="250">
+    <img src="images/banner.png" class="img-responsive" height="250" alt="banner">
 
     <?php include "menu.php"; ?>
 
@@ -58,7 +59,7 @@ if (isset($_POST['submit'])) {
                 <p class="text-center h1"> Add new Product </p>
             </header>
 
-            <form class="form-horizontal" role="form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"
+            <form class="form-horizontal" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"
                   id="product-form" enctype="multipart/form-data">
 
                 <div class="form-group">
@@ -77,6 +78,11 @@ if (isset($_POST['submit'])) {
                         <input type="text" class="form-control" id="p_category" placeholder="Product Category"
                                name="p_category" data-validation="required">
                         <p id="cat_suggestion"> </p>
+                        <div id="cat_add" class="collapse">
+
+                                <a id="cat_addition" href="insert_category.php" class="button btn-sm btn-warning" role="button">Add New Category</a>
+
+                        </div>
                     </div>
                 </div>
 
@@ -101,8 +107,8 @@ if (isset($_POST['submit'])) {
                     <label for="p_price" class="col-xs-4 control-label"> Product Price </label>
 
                     <div class="col-xs-6">
-                        <input type="numeric" class="form-control" id="p_price" placeholder="Product Price"
-                               name="p_price" data-validation="required" data-validation="number"
+                        <input type="number" class="form-control" id="p_price" placeholder="Product Price"
+                               name="p_price" data-validation="required number"
                                data-validation-allowing="float" data-validation-decimal-separator=","/>
                     </div>
                 </div>
@@ -128,7 +134,7 @@ if (isset($_POST['submit'])) {
                 </div>
 
 
-                <div class="form-group">
+                <div class="form-group collapse"  id="submit">
                    &nbsp;&nbsp; <button type="submit" class="btn btn-md btn-primary col-xs-offset-4" value="submit" name="submit"> &nbsp;
                         <span class="glyphicon glyphicon-floppy-saved"></span> Submit &nbsp; </button>
                 </div>
@@ -156,7 +162,17 @@ if (isset($_POST['submit'])) {
     $.ajax({
         url:"suggestions/category.php?categories="+ $("#p_category").val(),
         success:function(result){
-        $("#cat_suggestion").html(result);
+            if(result===''){
+//                $("#cat_addition").attr("ng-hide","false");
+                $('#cat_add').collapse('show');
+                $('#submit').collapse('hide');
+            } else {
+                $('#cat_add').collapse('hide');
+                $('#submit').collapse('show');
+            }
+//            $("#cat_add").append('');
+
+            $("#cat_suggestion").html(result);
         }});
     });
 

@@ -1,20 +1,21 @@
- <?php
+<!DOCTYPE html>
+<html>
+<head>
+
+    <?php
     if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
     ini_set('display_errors', 'On');
     require 'functions/functions.php';
-    
+
     if( !isset($_SESSION['admin_email']) ){
         echo "<script>
-            if (window.location.protocol !== 'https:'){window.location = 'https://'+window.location.hostname+window.location.pathname;}
             window.location ='./login.php';
         </script>";
     }
 
-?>
-<script>if (window.location.protocol !== 'https:'){window.location = 'https://'+window.location.hostname+window.location.pathname;}</script>
-<!DOCTYPE html>
-<html lang="">
-<head>
+    ?>
+
+    <script>if (window.location.protocol !== 'https:'){window.location = 'https://'+window.location.hostname+window.location.pathname;}</script>
 
     <?php include "header.php"; ?>
     <title> Home Page </title>
@@ -26,7 +27,7 @@
 
 <div class="container wrapper">
 
-    <img src="images/banner.png" class="img-responsive" width="100%" height="250">
+    <img src="images/banner.png" class="img-responsive" height="250" alt="banner">
 
     <?php include "menu.php"; ?>
 

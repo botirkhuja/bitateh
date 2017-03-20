@@ -35,6 +35,7 @@ app.controller('myCtrl', function($scope, $http)
       modal2: 'Sotuvchi',
       modal3: 'Brendi',
       modal4: 'Xususiyatlari',
+      modal5: 'Yopish',
       navi1: 'Bosh',
       navi2: 'Kategoriyalar',
       navi3: 'Til',
@@ -188,6 +189,7 @@ app.controller('myCtrl', function($scope, $http)
   	$scope.showItems=true;
 
 		$.ajax({
+            type: 'POST',
 			url: 'categories.php',
 			data: chosenCategory,
 			success: function (result) {
@@ -256,6 +258,7 @@ app.controller('myCtrl', function($scope, $http)
       $(document).ready(function(){
         $scope.item = item;
         $.ajax({
+          type: 'POST',
           url: 'getItemImages.php',
           data: item,
           success: function (result) {
@@ -266,6 +269,7 @@ app.controller('myCtrl', function($scope, $http)
         });
 
         $.ajax({
+          type: 'POST',
           url: 'getSellerInfo.php',
           data: item,
           success: function (result) {

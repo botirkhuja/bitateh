@@ -1,13 +1,9 @@
-<script type="text/javascript">
-  <!--
-
-  if (window.location.protocol !== 'https:'){window.location = 'https://'+window.location.hostname+window.location.pathname;}
-
-  //-->
-</script>
 <!DOCTYPE html>
-<html ng-app="myApp" ng-controller="myCtrl">
+
+<html data-ng-app="myApp" data-ng-controller="myCtrl">
+
   <head>
+    <script type="text/javascript">if (window.location.protocol !== 'https:'){window.location = 'https://'+window.location.hostname+window.location.pathname;}</script>
 
     <?php include "admin/header.php"; ?>
     <title>{{languages.title}}</title>
@@ -63,7 +59,7 @@
       }
 
       .panel-footer{
-        height: 70px;
+        height 70px;
       }
       .bluring {
         -webkit-filter: blur(3px); /* Chrome, Safari, Opera */
@@ -125,13 +121,13 @@
                   <div id="galary-carousel" class="carousel slide" data-ride="carousel">
                     <!-- Indicators -->
                     <!--<ol class="carousel-indicators">-->
-                      <!--<li data-target="#galary-carousel" data-slide-to="{{$index}}" ng-class="{active:!$index}" ng-repeat="imageName in imageNames"></li>-->
+                      <!--<li data-target="#galary-carousel" data-slide-to="{{$index}}" data-ng-class="{active:!$index}" data-ng-repeat="imageName in imageNames"></li>-->
                     <!--</ol>-->
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
-                      <div class="item" ng-class="{active:!$index}" ng-repeat="imageName in imageNames">
-                        <img ng-src="img/items/{{imageName.ImageName}}" alt="{{$index}}">
+                      <div class="item" data-ng-class="{active:!$index}" data-ng-repeat="imageName in imageNames">
+                        <img data-ng-src="img/items/{{imageName.ImageName}}" alt="{{$index}}">
                         <div class="carousel-caption">
                           ...
                         </div>
@@ -217,8 +213,8 @@
             <ul class="nav navbar-nav">
               <li class="active"><a class="navigation-bar" href="#home">{{languages.navi1}}</a></li>
               <li><a class="navigation-bar" href="#categories">{{languages.navi2}}</a></li>
-              <li><a class="navigation-bar" href="#itemsPage"><small ng-hide="showItems">{{languages.items1}}</small>{{chosenCategory | uppercase}}</a></li>
-              <!-- <li><a class="navigation-bar" href="#checkOut" ng-show="showCheckOut">Check Out</a></li> -->
+              <li><a class="navigation-bar" href="#itemsPage"><small data-ng-hide="showItems">{{languages.items1}}</small>{{chosenCategory | uppercase}}</a></li>
+              <!-- <li><a class="navigation-bar" href="#checkOut" data-ng-show="showCheckOut">Check Out</a></li> -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <!-- <li><a class="navigation-bar" href="#checkOut">Shopping <span class="glyphicon glyphicon-shopping-cart"> <span class="badge">{{cartQuantity}}</span></span></a></li> -->
@@ -226,9 +222,9 @@
               <li class="dropdown">
                 <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-flag"></span>{{languages.navi3}}<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a ng-click="changeLang(0)">Uzb</a></li>
-                  <li><a ng-click="changeLang(1)">Rus</a></li>
-                  <li><a ng-click="changeLang(2)">Eng</a></li>
+                  <li><a data-ng-click="changeLang(0)">Uzb</a></li>
+                  <li><a data-ng-click="changeLang(1)">Rus</a></li>
+                  <li><a data-ng-click="changeLang(2)">Eng</a></li>
                 </ul>
               </li>
             </ul>
@@ -242,7 +238,7 @@
           <h2>{{languages.explain1}}</h2>
           <hr class="divider">
           <div class="row">
-            <div class="col-lg-3 col-md-6 col-xs-6">
+            <div class="col-lg-3 col-md-6 col-xs-12">
               <div class="panel panel-primary">
                 <div class="panel-heading">{{languages.explain2}}</div>
                 <div class="panel-body">
@@ -251,7 +247,7 @@
                 <div class="panel-footer">{{languages.explain3}}</div>
               </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-xs-6">
+            <div class="col-lg-3 col-md-6 col-xs-12">
               <div class="panel panel-primary">
                 <div class="panel-heading">{{languages.explain4}}</div>
                 <div class="panel-body">
@@ -260,7 +256,7 @@
                 <div class="panel-footer">{{languages.explain5}}</div>
               </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-xs-6">
+            <div class="col-lg-3 col-md-6 col-xs-12">
               <div class="panel panel-primary">
                 <div class="panel-heading">{{languages.explain6}}</div>
                 <div class="panel-body">
@@ -269,7 +265,7 @@
                 <div class="panel-footer">{{languages.explain7}}</div>
               </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-xs-6">
+            <div class="col-lg-3 col-md-6 col-xs-12">
               <div class="panel panel-primary">
                 <div class="panel-heading">{{languages.explain8}}</div>
                 <div class="panel-body">
@@ -278,7 +274,7 @@
                 <div class="panel-footer">{{languages.explain9}}</div>
               </div>
             </div>
-            <!-- <div class="col-lg-3 col-md-2 col-xs-6">
+            <!-- <div class="col-lg-3 col-md-2 col-xs-12">
               <div class="panel panel-primary">
                 <div class="panel-heading">Check and Install</div>
                 <div class="panel-body">
@@ -287,7 +283,7 @@
                 <div class="panel-footer">You check your item and install it to use</div>
               </div>
             </div>
-            <div class="col-lg-3 col-md-2 col-xs-6">
+            <div class="col-lg-3 col-md-2 col-xs-12">
               <div class="panel panel-primary">
                 <div class="panel-heading">Everything is Done</div>
                 <div class="panel-body">
@@ -307,12 +303,12 @@
           <h2>{{languages.category1}}</h2><br>
           <hr class="divider">
           <div class="row">
-            <div class="col-md-4 col-sm-6 col-xs-12" ng-repeat="target in categoryNames track by target.CategoryID">
-              <a class="btn" ng-click="categorySelected(target)" href="#itemsPage">
+            <div class="col-md-4 col-sm-6 col-xs-12" data-ng-repeat="target in categoryNames track by target.CategoryID">
+              <a class="btn" data-ng-click="categorySelected(target)" href="#itemsPage">
                 <div class="panel panel-default">
                   <div class="panel-heading txt-large">{{languagesCategoryOrItemName(target.CategoryName) | uppercase}}</div>
                   <div class="panel-body" style="padding: 0;">
-                    <img ng-src="img/categories/{{target.CategoryImage}}" class="img-responsive">
+                    <img data-ng-src="img/categories/{{target.CategoryImage}}" class="img-responsive" alt="{{languagesCategoryOrItemName(target.CategoryName)}}">
                   </div>
                 </div>
               </a>
@@ -329,21 +325,21 @@
       <!-- Items to Choose -->
       <div class="container text-center">
         <div id="itemsPage" class="jumbotron white">
-            <h2 ng-show="showItems">{{languagesCategoryOrItemName(chosenCategory) | uppercase}}</h2>
-            <h2 ng-hide="showItems"><a href="#categories" role="button" style="color: black;">{{languages.items1}}</a></h2>
+            <h2 data-ng-show="showItems">{{languagesCategoryOrItemName(chosenCategory) | uppercase}}</h2>
+            <h2 data-ng-hide="showItems"><a href="#categories" role="button" style="color: black;">{{languages.items1}}</a></h2>
             <hr class="divider">
-            <div class="row" ng-show="showItems">
-              <div class="col-sm-6 col-md-4 col-lg-3 col-xs-6" ng-repeat="item in itemNames track by item.ItemID">
+            <div class="row" data-ng-show="showItems">
+              <div class="col-sm-6 col-md-4 col-lg-3 col-xs-6" data-ng-repeat="item in itemNames track by item.ItemID">
                 <div class="thumbnail">
-                  <a ng-click="viewDetails(item)" role="button">
-                    <img ng-src="img/items/{{item.Img}}" alt="item Image" class="img-responsive">
+                  <a data-ng-click="viewDetails(item)" role="button">
+                    <img data-ng-src="img/items/{{item.Img}}" alt="item Image" class="img-responsive">
                   </a>
                   <div class="caption">
-                    <a ng-click="viewDetails(item)" role="button" style="color: black;"><h4>{{item.Title}}</h4></a>
-                    <p><h5>{{item.Price | currency}}</h5></p>
+                    <a data-ng-click="viewDetails(item)" role="button" style="color: black;"><h4>{{item.Title}}</h4></a>
+                      <h5>{{item.Price | currency}}</h5>
                     <p>
-                      <!-- <a ng-click="addToCart(item)" href="#checkOut" class="btn btn-primary" role="button">Add to Cart</a> -->
-                      <a ng-click="viewDetails(item)" class="btn btn-default" role="button">{{languages.items2}}</a>
+                      <!-- <a data-ng-click="addToCart(item)" href="#checkOut" class="btn btn-primary" role="button">Add to Cart</a> -->
+                      <a data-ng-click="viewDetails(item)" class="btn btn-default" role="button">{{languages.items2}}</a>
                     </p>
                   </div>
                 </div>
@@ -354,7 +350,7 @@
 
 
       <!-- Checking out part -->
-      <div class="container" ng-show="showCheckOut">
+      <div class="container" data-ng-show="showCheckOut">
         <div id="checkOut" class="jumbotron white" >
           <fieldset>
             <legend>Items Information</legend>
@@ -362,26 +358,33 @@
             <table class="table table-hover table-bordered table-condensed">
               <thead>
                 <tr>
-                  <th style="width: 0.5%" class="text-right">#</th><th style="width: 75%">Title</th><th style="width: 5%">Price</th><th style="width: 5%">Quantity</th><th style="width: 7%">Action</th>
+                  <th style="width: 0.5%" class="text-right">#</th>
+                  <th style="width: 75%">Title</th>
+                  <th style="width: 5%">Price</th>
+                  <th style="width: 5%">Quantity</th>
+                  <th style="width: 7%">Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr ng-repeat="items in cart track by items.ItemID">
+                <tr data-ng-repeat="items in cart track by items.ItemID">
                   <td class="text-right">{{$index+1}}</td>
                   <td>{{items.Title}}</td>
                   <td>{{items.Price | currency}}</td>
-                  <td><input type="number" value="{{items.Quantity}}" ng-model="items.Quantity" style="width: 40px" min="1" name="quantity"/></td>
-                  <td><a ng-click="removeFromCart($index)" role="button">Remove</a></td>
+                  <td><input type="number" value="{{items.Quantity}}" data-ng-model="items.Quantity" style="width: 40px" min="1" name="quantity"/></td>
+                  <td><a data-ng-click="removeFromCart($index)" role="button">Remove</a></td>
+                </tr></tbody>
+              <tbody>
+                <tr style="background-color: white;">
+                  <th class="text-right" colspan="3">Total:</th>
+                  <th>{{getCartPrice() | currency}}</th>
+                  <th><a data-toggle="modal" data-target="#myModal" class="btn btn-sm btn-primary" role="button">Check Out</a></th>
                 </tr>
-                <tbody><tr style="background-color: white;"><th class="text-right" colspan="2">Total:</th>
-                <th>{{getCartPrice() | currency}}</th><th>
-                <a data-toggle="modal" data-target="#myModal" class="btn btn-sm btn-primary" role="button">Check Out</a></th></tr></tbody>
               </tbody>
             </table>
           </fieldset>
           <div>Cart content: {{cart}}</div>
           <!-- modal -->
-          <div ng-include="'checkOut.html'"></div>
+          <div data-ng-include="'checkOut.html'"></div>
         </div>
       </div> <!-- End of Checking out part -->
 

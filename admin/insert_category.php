@@ -1,27 +1,31 @@
-<?php
-if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-ini_set('display_errors', 'On');
-require 'functions/functions.php';
-
-    if(empty($_SESSION['admin_email']))
-        echo "<script> window.location ='./login.php';</script>";
-
-    if(isset($_POST['c_name'])){
-
-        $new_category = $_POST['c_name'];
-        $result = insert_new_categories($new_category);
-
-        if($result)
-            echo "<script>window.location='./indexOld.php?category_inserted';</script>";
-        else
-            echo "<script> alert('Oops something went wrong.'); </script>";
-    } 
-?>
-
 <!DOCTYPE html>
-<html lang="">
+<html>
 <head>
 
+    <script>if (window.location.protocol !== 'https:'){window.location = 'https://'+window.location.hostname+window.location.pathname;}</script>
+    <?php
+        if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+        ini_set('display_errors', 'On');
+        require 'functions/functions.php';
+
+        if(empty($_SESSION['admin_email']))
+            echo "<script> window.location ='./login.php';</script>";
+
+        if(isset($_POST['c_name'])){
+
+            $new_category = $_POST['c_name'];
+            $c_image = $_FILES["c_image"];
+            move_uploaded_file($_FILES["c_image"]['tmp_name'],"../img/categories/".basename($_FILES["c_image"]['name']));
+            $c_image = $_FILES["c_image"]['name'];
+
+            $result = insert_new_category($new_category, $c_image);
+
+            if($result)
+                echo "<script>window.location='./index.php?category_inserted';</script>";
+            else
+                echo "<script> alert('Oops something went wrong.'); </script>";
+    }
+    ?>
     <?php include "header.php"; ?>
     <title> Add new Category </title>
 
@@ -32,21 +36,9 @@ require 'functions/functions.php';
 
 <div class="container wrapper">
 
-    <img src="images/banner.png" class="img-responsive" width="100%" height="250">
+    <img src="images/banner.png" class="img-responsive" height="250" alt="banner">
 
-    <ul class="nav nav-tabs">
-        <li ><a href="index.php"> Home <span class="glyphicon glyphicon-home"></span></a></li>
-        <li><a href="view_products.php"> Products </a></li>
-        <li><a href="insert_product.php"> New Product </a></li>
-        <li><a href="view_categories.php"> Categories </a></li>
-        <li class="active"><a href="insert_category.php"> New Category</a></li>
-        <li><a href="view_brands.php"> Brands </a></li>
-        <li><a href="insert_brand.php"> New Brand </a></li>
-        <li><a href="customers.php"> Customers </a></li>
-        <li><a href="view_orders.php"> Orders </a></li>
-        <li><a href="view_payment.php"> Payments </a></li>
-        <li><a  id="logout" > Logout </a></li>
-    </ul>
+    <?php include "menu.php"; ?>
 
     <div class="jumbotron main">
         <div class="row">
@@ -54,8 +46,8 @@ require 'functions/functions.php';
                 <p class="text-center h1"> Add new Category </p>
             </header>
 
-            <form class="form-horizontal" role="form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"
-                  id="category-form">
+            <form class="form-horizontal" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>"
+                  id="category-form" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <label for="c_name" class="col-xs-4 control-label"> Category Name </label>
@@ -64,6 +56,15 @@ require 'functions/functions.php';
                         <input type="text" class="form-control" id="c_name" placeholder="Category name" name="c_name"
                                data-validation="required" autocomplete="off">
                         <p id="cat_suggestion"> </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="c_image" class="col-xs-4 control-label"> Category Image </label>
+
+                    <div class="col-xs-6">
+                        <input type="file" class="filestyle" id="c_image" name="c_image"
+                               data-input="false" data-buttonName="btn-default" data-validation="required">
                     </div>
                 </div>
 
