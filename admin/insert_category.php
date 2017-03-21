@@ -6,12 +6,48 @@
     <?php
         if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
         ini_set('display_errors', 'On');
+        ini_set('file_uploads', 'On');
         require 'functions/functions.php';
 
         if(empty($_SESSION['admin_email']))
             echo "<script> window.location ='./login.php';</script>";
 
+
         if(isset($_POST['c_name'])){
+
+            $target_dir = "../img/categories/";
+            $target_file = $target_dir . basename($_FILES["c_image"]['name']);
+            $upload_ok = 1;
+            $image_type = pathinfo($target_file, PATHINFO_EXTENSION);
+
+
+            // Check if image file is a actual image or fake image
+            $check = getimagesize($_FILES["c_image"]["tmp_name"]);
+            if ($check === false) {
+                $upload_ok = 0;
+                $error_msg = "File is not an image.";
+            }
+
+            // Check if file already exists
+            if (file_exists($target_file)) {
+                $upload_ok = 0;
+                $error_msg = "This file already exists.";
+            }
+
+            // Check file size
+            if ($_FILES["c_image"]["size"] > 200000) {
+                $upload_ok = 0;
+                $error_msg = "File is large than 200kb.";
+            }
+
+            // Allow certain file formats
+            if ($image_type != "jpg" && $image_type != "png" && $image_type != "jpeg"
+                && $image_type != "gif" ){
+                $upload_ok = 0;
+                $error_msg = "Only JPG, JPEG, PNG & GIF files are allowed";
+            }
+
+
 
             $new_category = $_POST['c_name'];
             $c_image = $_FILES["c_image"];
@@ -24,7 +60,7 @@
                 echo "<script>window.location='./index.php?category_inserted';</script>";
             else
                 echo "<script> alert('Oops something went wrong.'); </script>";
-    }
+        }
     ?>
     <?php include "header.php"; ?>
     <title> Add new Category </title>
